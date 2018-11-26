@@ -23,11 +23,11 @@ class TaskListView(generics.ListCreateAPIView):
 	serializer_class = serializers.TaskSerializer
 
 	def perform_create(self, serializer):
-		serializer.save(creator=self.request.user)
+		serializer.save(owner=self.request.user)
 
 class DetailTask(generics.RetrieveUpdateDestroyAPIView):
 	queryset = models.Task.objects.all()
 	serializer_class = serializers.TaskSerializer
 
 	def perform_create(self, serializer):
-		serializer.save(creator=self.request.user)
+		serializer.save(owner=self.request.user)
