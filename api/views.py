@@ -1,43 +1,33 @@
-from rest_framework import generics, mixins
+from rest_framework import generics
 
 from . import models
 from . import serializers
 
-class View(generics.GenericAPIView):
-	def perform_create(self, serializer):
-		serializer.save(owner=self.request.user)
-
-class ListCreateAPIView(
-	View, 
-	mixins.RetrieveModelMixin, 
-	mixins.UpdateModelMixin
-):
-	pass
-
-class RetrieveUpdateDestroyAPIView(
-	View, 
-	mixins.RetrieveModelMixin,
-	mixins.UpdateModelMixin,
-	mixins.DestroyModelMixin
-):
-	pass
-
-class ProjectView:
+class ProjectListView(generics.ListCreateAPIView):
 	queryset = models.Project.objects.all()
 	serializer_class = serializers.ProjectSerializer
 
-class TaskView:
+	def perform_create(self, serializer):
+		serializer.save(owner=self.request.user)
+
+class DetailProject(generics.RetrieveUpdateDestroyAPIView):
+	queryset = models.Project.objects.all()
+	serializer_class = serializers.ProjectSerializer
+
+	def perform_create(self, serializer):
+		serializer.save(owner=self.request.user)
+
+
+class TaskListView(generics.ListCreateAPIView):
 	queryset = models.Task.objects.all()
 	serializer_class = serializers.TaskSerializer
 
-class ProjectListView(ProjectView, ListCreateAPIView):
-	pass
+	def perform_create(self, serializer):
+		serializer.save(creator=self.request.user)
 
-class DetailProject(ProjectView, RetrieveUpdateDestroyAPIView):
-	pass
+class DetailTask(generics.RetrieveUpdateDestroyAPIView):
+	queryset = models.Task.objects.all()
+	serializer_class = serializers.TaskSerializer
 
-class TaskListView(TaskView, generics.ListCreateAPIView):
-	pass
-
-class DetailTask(TaskView, RetrieveUpdateDestroyAPIView):
-	pass
+	def perform_create(self, serializer):
+		serializer.save(creator=self.request.user)
