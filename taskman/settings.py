@@ -137,8 +137,6 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 SITE_ID = 1
 
 # rest framework settings
@@ -151,3 +149,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'nickparser@example.com'
+EMAIL_HOST_PASSWORD = '*****'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+# Celery settings
+CELERY_BROKER_URL = 'amqp://localhost'
