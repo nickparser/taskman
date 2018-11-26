@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Report</title>
+</head>
+<body>
+	<h1>report successful generated!</h1>
+	<hr align="center"/>
+	<ul>
+		{% for task in tasks %}
+		<li>id : {{task.id}}</li>
+		<li>title : {{task.title}}</li>
+		<li>description : {{task.description}}</li>
+		<li>cteated at : {{task.createdat}}</li>
+		<li>project id : {{task.project}}</li>
+		<li>user id : {{task.owner}}</li>
+		<hr align="left" width="300" />
+		{% endfor %}
+	</ul>
+</body>
+</html>
