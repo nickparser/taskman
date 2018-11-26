@@ -20,13 +20,13 @@ api/v1/rest-auth/registration/ # add new user
 ```
 - projects
 ```
-api/v1/projects/ # get projects list/ add new project
-api/v1/projects/<int:pk>/ # get concrete project
+api/v1/projects/ # get projects list / add new project
+api/v1/projects/<int:pk>/ # get concrete project / change project
 ```
 - tasks
 ```
-api/v1/tasks/ # get tasks list/ add new task
-api/v1/tasks/<int:pk>/ # get concrete task
+api/v1/tasks/ # get tasks list / add new task
+api/v1/tasks/<int:pk>/ # get concrete task / change task
 ```
 
 ### report/
